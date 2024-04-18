@@ -11,7 +11,7 @@ rembg
 flask
 opencv-python
 werkzeug
-sqlite3
+pysqlite3
 wandb
 glob
 matplotlib
