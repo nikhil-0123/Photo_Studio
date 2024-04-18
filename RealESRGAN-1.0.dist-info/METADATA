@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: RealESRGAN
+Version: 1.0
+Home-page: https://github.com/ai-forever/Real-ESRGAN
+Author: Sberbank AI, Xintao Wang
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: opencv-python
+Requires-Dist: Pillow
+Requires-Dist: torch >=1.7
+Requires-Dist: torchvision >=0.8.0
+Requires-Dist: tqdm
+Requires-Dist: huggingface-hub
+

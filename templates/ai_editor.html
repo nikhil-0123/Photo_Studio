@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Studio</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ai_editor.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <ul class="nav_items">
+        <li class="nav_item">
+          <a href="{{url_for('home')}}" class="nav_link">Home</a>
+          <a href="#" class="nav_link" onclick="showContent('background-content')">Background Remover</a>
+          <a href="#" class="nav_link" onclick="showContent('enhancer-content')">Image Enhancer</a>
+          <a href="#" class="nav_link" onclick="showContent('object-content')">object Eraser</a>
+          <a href="#" class="nav_link" onclick="showContent('text-image-content')">Text to image generator</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="container">
+    <div class="wrapper">
+        <div class="editor-panel">
+          <div id="enhancer-content" class="content-section">
+            <br><h2 style="color: white;">Low Light Image Enhancer</h2>
+            <br>
+            <form action="" method="post">
+              <button type="submit" class="btn_text" >Enhence Image</button>
+            </form><br><br>
+            <h2 style="color: white;">Low Resolution Image Enhancer</h2>
+            <br>
+            <form method="post" action="{{url_for('upscale')}}">
+                <select name="size">
+                    <option value="2x">2x</option>
+                    <option value="4x">4x</option>
+                    <option value="8x">8x</option>
+                </select><br><br>
+                <button type="submit" class="btn_text" >Upscale</button>
+            </form>
+           </div> 
+          <div id="background-content" class="content-section">
+            <h2 style="color: white;">Background Remove</h2><br><br>
+            <div class="Background">
+              <form action="{{url_for('removebg')}}" method="post">
+                <button type="submit" class="remove" >Remove BG</button>
+              </form>
+              <div class="line"></div>
+              <h2 style="color: white;">Background Edit</h2><br>
+              <h3 style="color: white;">Background Color</h3><br>
+              <form action="/bgcolor" enctype="multipart/form-data" method="post">
+                <input type="color" id="bg-color" name="bg-color">
+              <br><br>
+                <button type="submit" class="remove">Apply Background</button>
+              </form>
+              <br><br>
+              <h3 style="color: white;">Background Image</h3><br>
+              <form action="/replacebg" method="post" class="replace" enctype="multipart/form-data">
+                <input type="file" hidden class="bgraund" name="input" id="input"  accept="image/*">
+                <button type="button" class="upload">Choose Backgraund</button><br><br>
+                <button type="submit" class="remove" >Replace BG</button>
+              </form>
+            </div>
+          </div>
+          <div class="content-section" id="text-image-content">
+              <h1 style="color: white;">Text To image generator</h1><br><br>
+              <form action="{{url_for('text_image')}}" method="post">
+                  <input class="text" type="text" name="promot" id="text" placeholder="Enter your script"><br><br>
+                <center><button type="submit" class="btn_text">Generate Image</button></center>
+              </form>
+          </div>
+        </div>
+        <div class="preview-img">
+            {% if result_img %}
+                <img src="static/uploads/{{result_img}}" id="selected-image" alt="Image">
+            {% endif %}
+            {% if result %}
+                <img src="static/Result/bg_result/{{result}}" id="selected-image" alt="result Image">
+            {% endif %}
+            {% if generated %}
+                <img src="static/Result/generated_images/{{generated}}" id="selected-image" alt="result">
+            {% endif %}
+            {% if upscale %}
+                <img src="{{upscale}}" id="selected-image" alt="result Image">
+            {% endif %}
+        </div>
+    </div>
+    <div class="controls">
+        <button class="reset-filter" style="cursor: initial;"></button>
+        <div class="row">
+            <form method="post" action="{{url_for('editor')}}" enctype="multipart/form-data">
+                <input type="file" name="file" id="file" class="file-input" enctype="multipart/form-data" accept="image/*" hidden onchange="displaySelectedImage(this)">
+                <button type="button" class="choose-img">Choose Image</button>
+                <button type="submit" class="save-img">Save Image</button>
+            </form>
+        </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+            <h4>About Us</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tincidunt est ac turpis porta.</p>
+        </div>
+        <div class="col-md-4">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Gallery</a></li>
+            <li><a href="">Features</a></li>
+            <li><a href="">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Contact Us</h4>
+            <address>
+              <p>123 Example Street</p>
+              <p>City, State, ZIP Code</p>
+              <p>Email: info@example.com</p>
+              <p>Phone: (123) 456-7890</p>
+            </address>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showContent(contentId) {
+      console.log('Attempting to show content with ID:', contentId);
+
+      var contentSections = document.querySelectorAll('.content-section');
+      contentSections.forEach(function (section) {
+        section.style.display = 'none';
+      });
+
+      var selectedContent = document.getElementById(contentId);
+      if (selectedContent) {
+        selectedContent.style.display = 'block';
+      } else {
+        console.error('Content element not found for ID:', contentId);
+      }
+    }
+
+    function loadContentIntoEditor(content) {
+      var editorPanel = document.querySelector('.editor-panel');
+      editorPanel.innerHTML = content;
+    }
+
+  </script>
+  <script type="text/javascript" src="{{ url_for('static', filename='javascript/ai_editor.js') }}"></script>
+</body>
+</html>

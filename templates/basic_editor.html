@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Image Studio</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/basic_editor.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <ul class="nav_items">
+        <li class="nav_item">
+          <a href="{{url_for('home')}}" class="nav_link">Home</a>
+          <a href="#" class="nav_link" onclick="showContent('home-content')">Basic</a>
+          <a href="#" class="nav_link" onclick="showContent('filter-content')">Filter</a>
+          <a href="#" class="nav_link" onclick="showContent('adjustment-content')">Ajeustmeny</a>
+          <a href="#" class="nav_link" onclick="showContent('rotate-left-content')">Rotate</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="container">
+    <div class="wrapper">
+        <div class="editor-panel">
+            <div id="home-content" class="content-section">
+              <h2>Basic Tools</h2><br>
+              <div class="tool">
+                <button style="margin-right: 100px;margin-bottom: 30px;cursor: pointer;">
+                <a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" shape-rendering="geometricPrecision" width="48.000000pt" height="48.000000pt" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 511 511.501">
+                  <path fill-rule="nonzero" d="M66.906 17.472C66.906 7.823 74.729 0 84.378 0c9.649 0 17.471 7.823 17.471 17.472v48.936h267.795a57.577 57.577 0 0128.752 7.664l34.076-35.317c6.672-6.935 17.703-7.149 24.637-.477 6.934 6.671 7.149 17.703.477 24.637l-35.49 36.783a57.545 57.545 0 015.552 24.712v285.74h65.88c9.649 0 17.472 7.823 17.472 17.471 0 9.649-7.823 17.472-17.472 17.472h-65.88v48.936c0 9.649-7.824 17.472-17.472 17.472-9.649 0-17.471-7.823-17.471-17.472v-48.936H124.91c-15.97 0-30.475-6.523-40.98-17.024-10.501-10.505-17.024-25.012-17.024-40.98V101.351H17.472C7.823 101.351 0 93.528 0 83.879c0-9.648 7.823-17.471 17.472-17.471h49.434V17.472zm34.943 83.879v280.074l270.115-279.956a22.852 22.852 0 00-2.32-.118H101.849zm290.856 28.809l-270.04 279.879c.739.074 1.488.111 2.245.111h267.795V130.16z" fill="#000"/>
+                </svg>
+                <p>Crop</p></a>
+                </button>
+
+              <button style="margin-right: 100px;margin-bottom: 30px;cursor: pointer;">
+                <a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" shape-rendering=" geometricPrecision" width="48.000000pt" height="48.000000pt" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 434 512.51">
+                  <path fill-rule="nonzero" d="M434 96.72H270.77v415.79H160.98V96.72H0V0h434z" fill="#000"/>
+                </svg>
+                <p>Add Text</p></a>
+              </button >
+
+              <button style="margin-right: 100px;margin-bottom: 30px;cursor: pointer;">
+                <a>
+                <svg version="1.1" id="Layer_1" class="icon" xmlns="http://www.w3.org/2000/svg" width="48.000000pt" height="48.000000pt" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.87" style="enable-background:new 0 0 122.88 122.87" xml:space="preserve">
+                  <g>
+                    <path d="M122.88,77.63v41.12c0,2.28-1.85,4.12-4.12,4.12H77.33v-9.62h35.95c0-12.34,0-23.27,0-35.62H122.88L122.88,77.63z M77.39,9.53V0h41.37c2.28,0,4.12,1.85,4.12,4.12v41.18h-9.63V9.53H77.39L77.39,9.53z M9.63,45.24H0V4.12C0,1.85,1.85,0,4.12,0h41 v9.64H9.63V45.24L9.63,45.24z M45.07,113.27v9.6H4.12c-2.28,0-4.12-1.85-4.12-4.13V77.57h9.63v35.71H45.07L45.07,113.27z" fill="#000"/>
+                  </g>
+                </svg>
+                <p>Border</p></a>
+              </button >
+
+              <button style="margin-right: 100px;margin-bottom: 30px;cursor: pointer;">
+                <a>
+                <svg version="1.1" id="Layer_1" class="icon" xmlns="http://www.w3.org/2000/svg" width="48.000000pt" height="48.000000pt"xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 97.68" style="enable-background:new 0 0 122.88 97.68" xml:space="preserve">
+                  <style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style>
+                  <g>
+                    <path class="st0" d="M0,0h122.88v97.68H0V0L0,0z M34.56,25.4c4.41,0,7.99,3.58,7.99,7.99c0,4.42-3.58,7.99-7.99,7.99 c-4.41,0-7.99-3.58-7.99-7.99C26.57,28.97,30.15,25.4,34.56,25.4L34.56,25.4z M68.2,59.7l15.99-27.64l16.99,42.96l-79.27,0v-5.33 l6.66-0.33l6.66-16.32l3.33,11.66h9.99l8.66-22.31L68.2,59.7L68.2,59.7z M9.13,8.09h104.63v81.49H9.13V8.09L9.13,8.09z" fill="#000"/>
+                  </g>
+                </svg>
+                <p>Frame</p></a>
+              </button>
+            </div>
+            </div>
+  
+          <div id="adjustment-content" class="content-section">
+              <h2>Adjustment</h2>
+            <div class="skew">
+              <label for="brt">Brightness:
+                <div class="s" id="brt">100%</div>
+              </label>
+            </div>
+            <div class="sliders">
+              <input class="range brt" id="range" type="range" min="0" max="4" value="1" step=".05" name="brt"
+                oninput="pcnt(value, '#brt')" />
+            </div>
+            <div class="skew">
+              <label for="cnt">Contrast:
+                <div class="s" id="cnt">100%</div>
+              </label>
+            </div>
+            <div class="sliders">
+              <input class="range cnt" id="range" type="range" min="0" max="4" value="1" step=".05" name="cnt"
+                oninput="pcnt(value, '#cnt')" />
+            </div>
+            <div class="skew">
+              <label for="gs">Grayscale:
+                <div class="s" id="gs">0%</div>
+              </label>
+            </div>
+            <div class="sliders">
+              <input class="range gs" id="range" type="range" min="0" max="1" value="0" step=".05" name="gs"
+                oninput="pcnt(value, '#gs')" />
+            </div>
+            <div class="skew">
+              <label for="inv">Invert:
+                <div class="s" id="inv">0%</div>
+              </label>
+            </div>
+            <div class="sliders">
+              <input class="range inv" id="range" type="range" min="0" max="1" value="0" step=".05" name="inv"
+                oninput="pcnt(value, '#inv')" />
+            </div>
+            <div class="skew">
+              <label for="opa">Opacity:
+                <div class="s" id="opa">100%</div>
+              </label>
+            </div>
+            <div class="sliders">
+              <input class="range opa" id="range" type="range" min="0" max="1" value="1" step=".05" name="opa"
+                oninput="pcnt(value, '#opa')" />
+            </div>
+            <div class="skew">
+              <label for="sat">Saturate:
+                <div class="s" id="sat">0%</div>
+              </label>
+            </div>
+            <div class="sliders">
+              <input class="range sat" id="range" type="range" min="0" max="4" value="1" step=".05" name="sat"
+                oninput="pcnt(value, '#sat')" />
+            </div>
+            <div class="skew">
+              <label for="sep">Sepia:
+                <div class="s" id="sep">0%</div>
+              </label>
+            </div>
+            <div class="sliders">
+              <input class="range sep" id="range" type="range" min="0" max="1" value="0" step=".05" name="sep"
+                oninput="pcnt(value, '#sep')" />
+            </div>
+            <div class="skew">
+              <label for="blr">Blur:
+                <div class="s" id="blr">0px</div>
+              </label>
+            </div>
+            <div class="sliders">
+              <input class="range blr" id="range" type="range" min="0" max="20" value="0" step="1" name="blr"
+                oninput="blr(value)" />
+            </div>
+            <div class="skew">
+              <label for="hr">Hue-Rotate:
+                <div class="s" id="hr">0deg</div>
+              </label>
+            </div>
+            <div class="sliders">
+              <input class="range hr" id="range" type="range" min="0" max="360" value="0" step="1" name="hr"
+                oninput="hr(value)" />
+            </div>
+          </div>
+
+          <div id="filter-content" class="content-section">
+            <h2>Filter</h2>
+            <div class="fiter">
+              <img src="{{ url_for('static', filename='images/filter1.png') }}" width="390px" height="100px" style="cursor: pointer;">
+              <img src="{{ url_for('static', filename='images/filter2.png') }}" width="390px" height="100px" style="cursor: pointer;">
+            </div>
+          </div>
+
+          <div id="rotate-left-content" class="content-section">
+            <label class="title">Rotate & Flip</label><br><br>
+            <div class="options">
+              <button id="left" name="operation" value="left_rotate" type="submit" style="width: 100px; height: 100px;"><i class="fa-solid fa-rotate-left"></i></button>
+              <button id="right" type="submit" value="right_rotate" name="operation" style="width: 100px; height: 100px;"><i class="fa-solid fa-rotate-right"></i></button><br><br>
+              <button id="horizontal" name="operation" value="horizontal_swap" type="submit" style="width: 100px; height: 100px;"><i class='bx bx-reflect-vertical'></i></button>
+              <button id="vertical" name="operation" value="vertical_swap" type="submit" style="width: 100px; height: 100px;"><i class='bx bx-reflect-horizontal' ></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="preview-img">
+          <img id="img" class="left" src="{{ url_for('static', filename='images/image-placeholder.swg') }}" onerror="this.src='https://cdn.presslabs.com/wp-content/uploads/2018/10/upload-error.png'">
+        </div>
+    </div>
+    <div class="controls">
+        <button class="reset-filter" style="cursor: initial;"></button>
+        <div class="row">
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" name="file" hidden id="file" class="file-input" accept="image/*" onchange="readURL(this);">
+                <button type="button" class="choose-img">Choose Image</button>
+                <button type="submit" class="save-img">Save Image</button>
+            </form>
+        </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+            <h4>About Us</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tincidunt est ac turpis porta.</p>
+        </div>
+        <div class="col-md-4">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Gallery</a></li>
+            <li><a href="">Features</a></li>
+            <li><a href="">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Contact Us</h4>
+            <address>
+              <p>123 Example Street</p>
+              <p>City, State, ZIP Code</p>
+              <p>Email: info@example.com</p>
+              <p>Phone: (123) 456-7890</p>
+            </address>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showContent(contentId) {
+      console.log('Attempting to show content with ID:', contentId);
+
+      var contentSections = document.querySelectorAll('.content-section');
+      contentSections.forEach(function (section) {
+        section.style.display = 'none';
+      });
+
+      var selectedContent = document.getElementById(contentId);
+      if (selectedContent) {
+        selectedContent.style.display = 'block';
+      } else {
+        console.error('Content element not found for ID:', contentId);
+      }
+    }
+
+    function loadContentIntoEditor(content) {
+      var editorPanel = document.querySelector('.editor-panel');
+      editorPanel.innerHTML = content;
+    }
+
+  </script>
+  <script type="text/javascript" src="{{ url_for('static', filename='javascript/basic_editor.js') }}"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js'></script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}"> 
+    <link rel="icon" style="width:50px;" type="image/x-icon" href="{{ url_for('static',filename='images/logo.png')}}">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="#" class="nav_logo">Photo Studio</a>
+    </nav>
+  </header>
+  <section class="home">
+    <div class="form_container">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul id="alert" class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+      <div class="form login_form">
+        <form name="login" action="{{ url_for('login') }}" method="post">
+          <h2>Login</h2>
+          <div class="input_box">
+            <input type="text" name="username" placeholder="Enter your Username" required onclick="clearLabel()"/>
+            <i class="uil uil-users-alt email"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" name="password" placeholder="Enter your password" required onclick="clearLabel()" />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+          <button class="button" type="submit">Login</button>
+          <div class="login_signup">Don't have an account? <a href="{{ url_for('register')}}" id="signup">Signup</a></div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript" src="{{ url_for('static', filename='javascript/login.js') }}"></script>
+</body>
+</html>
