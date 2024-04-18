@@ -10,7 +10,6 @@ torchaudio
 rembg
 flask
 opencv-python
-os
 werkzeug
 sqlite3
 wandb
