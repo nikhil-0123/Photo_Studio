@@ -9,7 +9,6 @@ tensorflow
 torchaudio
 rembg
 flask
-functools
 opencv-python
 os
 werkzeug
