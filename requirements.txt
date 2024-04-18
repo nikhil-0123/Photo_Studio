@@ -13,6 +13,3 @@ opencv-python
 werkzeug
 pysqlite3
 wandb
-glob
-matplotlib
-zipfile
